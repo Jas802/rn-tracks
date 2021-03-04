@@ -7,7 +7,6 @@ const Map = () => {
   const {
     state: { currentLocation },
   } = useContext(LocationContext);
-  console.log(state);
 
   if (!currentLocation) {
     return <ActivityIndicator size='large' style={{ marginTop: 200 }} />;
@@ -21,11 +20,11 @@ const Map = () => {
         latitudeDelta: 0.01,
         longitudeDelta: 0.01,
       }}
-      region={{
-        ...currentLocation.coords,
-        latitudeDelta: 0.01,
-        longitudeDelta: 0.01,
-      }}
+      // region={{
+      //   ...currentLocation.coords,
+      //   latitudeDelta: 0.01,
+      //   longitudeDelta: 0.01,
+      // }}
     >
       <Circle
         center={currentLocation.coords}
