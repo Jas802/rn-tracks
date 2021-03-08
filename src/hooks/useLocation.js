@@ -29,14 +29,23 @@ export default (shouldTrack, callback) => {
     }
   };
 
-  useEffect(() => {
-    if (shouldTrack) {
-      startWatching();
-    } else {
-      subscriber.remove();
-      setSubscriber(null);
-    }
-  }, [shouldTrack]);
+  useEffect(
+    () => {
+      if (shouldTrack) {
+        startWatching();
+      } else {
+        subscriber.remove();
+        setSubscriber(null);
+      }
+      return () => {
+        if (subscriber) {
+          subscriber.remove();
+        }
+      };
+    },
+    [shouldTrack],
+    callback
+  );
 
   return [err];
 };
